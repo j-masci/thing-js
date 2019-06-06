@@ -11,7 +11,7 @@ import Main from './components/Main';
 
     app.init = function () {
 
-        const root = document.getElementById('the-thing');
+        const root = document.getElementById('app-root');
 
         if (root) {
             ReactDOM.render(<Main />, root);

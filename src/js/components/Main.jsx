@@ -1,6 +1,7 @@
 
+import TheThing from './TheThing';
 
-class Main extends React.Component{
+export default class Main extends React.Component{
 
     constructor(props){
         super(props);
@@ -9,9 +10,10 @@ class Main extends React.Component{
 
     render(){
         return (
-            <div className="fuck">
-                <p>adfgskjh</p>
-            </div>
+            <>
+            <p>Main...</p>
+            <TheThing />
+            </>
         );
     }
 

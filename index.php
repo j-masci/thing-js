@@ -1,5 +1,5 @@
 <?php
-include './core/app.php';
+include 'load.php';
 ?>
 
 <!DOCTYPE html>
@@ -12,8 +12,12 @@ include './core/app.php';
 </head>
 <body>
 
-<div id="the-thing"></div>
+<div id="app-root"></div>
 
+<script src="https://unpkg.com/react@16.8.6/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@16.8.6/umd/react-dom.development.js"></script>
+<!--<script src="https://unpkg.com/react-redux@5.0.6/dist/react-redux.js"></script>-->
+<!--<script src="https://unpkg.com/axios/dist/axios.min.js"></script>-->
 <script src="<?php echo TT_BASE_URL; ?>/assets/js/bundle.js" type="text/javascript"></script>
 
 </body>
