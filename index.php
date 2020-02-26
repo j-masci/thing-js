@@ -12,9 +12,16 @@ include './core/_bootstrap.php';
 </head>
 <body>
 
-<div id="app-root"></div>
+<div style="height: 200px;"></div>
 
 <div id="json-builder"></div>
+
+<div style="height: 200px;"></div>
+
+<div id="app-root"></div>
+
+<div style="height: 200px;"></div>
+
 
 <script src="https://unpkg.com/react@16.8.6/umd/react.development.js"></script>
 <script src="https://unpkg.com/react-dom@16.8.6/umd/react-dom.development.js"></script>
