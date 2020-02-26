@@ -21,3 +21,26 @@
     border: 1px solid @borderGrey;
     background: @offWhite;
 }
+
+#json-builder{
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.jb-item{
+    width: 100%;
+    .flex-left(center, wrap);
+    margin: 5px;
+    > .jb-item{
+        padding-left: 10px;
+    }
+    .jb-controls{
+        .flex-left(center, wrap);
+        > *{
+            margin-right: 10px;
+            background: @offWhite;
+        }
+    }
+}

@@ -2,8 +2,11 @@
 // import React, { useState } from 'react';
 
 import Main from './components/Main';
+import JBItem from './components/JBItem';
 
 (function () {
+
+    console.log("App.jsx");
 
     let app = {};
 
@@ -16,6 +19,13 @@ import Main from './components/Main';
         if (root) {
             ReactDOM.render(<Main />, root);
         }
+
+        const jb = document.getElementById('json-builder');
+
+        if (jb) {
+            ReactDOM.render(<JBItem isRoot={1} />, jb);
+        }
+
     };
 
     window.theThing = app;

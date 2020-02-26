@@ -1,5 +1,5 @@
 /.idea/
 /node_modules/
-/package-lock.json
 /vendor/
-config.php
+/package-lock.json
+/_config.php

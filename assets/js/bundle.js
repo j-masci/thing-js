@@ -168,11 +168,14 @@ module.exports = function shallowEqualObjects(objA, objB) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Main__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/Main */ "./src/js/components/Main.jsx");
+/* harmony import */ var _components_JBItem__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/JBItem */ "./src/js/components/JBItem.jsx");
 // import React, { Component } from 'react';
 // import React, { useState } from 'react';
 
 
+
 (function () {
+  console.log("App.jsx");
   var app = {};
   app.Main = React.createRef();
 
@@ -182,127 +185,19 @@ __webpack_require__.r(__webpack_exports__);
     if (root) {
       ReactDOM.render(React.createElement(_components_Main__WEBPACK_IMPORTED_MODULE_0__["default"], null), root);
     }
+
+    var jb = document.getElementById('json-builder');
+
+    if (jb) {
+      ReactDOM.render(React.createElement(_components_JBItem__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        isRoot: 1
+      }), jb);
+    }
   };
 
   window.theThing = app;
   window.theThing.init();
 })();
-
-/***/ }),
-
-/***/ "./src/js/components/AThing.jsx":
-/*!**************************************!*\
-  !*** ./src/js/components/AThing.jsx ***!
-  \**************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return AThing; });
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-var AThing =
-/*#__PURE__*/
-function (_React$Component) {
-  _inherits(AThing, _React$Component);
-
-  function AThing(props) {
-    var _this;
-
-    _classCallCheck(this, AThing);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(AThing).call(this, props));
-
-    _defineProperty(_assertThisInitialized(_this), "rand", function (pos) {
-      var next = pos + 10 * (2 * Math.random() - 1);
-
-      if (next < 0 || next > 100) {
-        _this.edges++;
-        next = 50;
-      }
-
-      return next;
-    });
-
-    _this.props.onInit(_assertThisInitialized(_this));
-
-    _this.interval = undefined;
-    _this.x = 100 * Math.random();
-    _this.y = 100 * Math.random();
-    _this.steps = 0;
-    _this.edges = 0;
-    return _this;
-  }
-
-  _createClass(AThing, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      var _this2 = this;
-
-      this.interval = setInterval(function () {
-        _this2.steps++;
-        _this2.x = _this2.rand(_this2.x);
-        _this2.y = _this2.rand(_this2.y);
-
-        _this2.forceUpdate();
-      }, 500);
-    }
-  }, {
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      // probably not needed... ?
-      if (this.interval) {
-        clearInterval(this.interval);
-      }
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var reflection = this.props.getLinked();
-
-      if (reflection) {
-        reflection.forceUpdate();
-      }
-
-      return React.createElement("div", {
-        className: "a-thing",
-        style: {
-          position: "absolute",
-          bottom: this.x + "%",
-          left: this.y + "%",
-          borderRadius: "10px",
-          transition: "all .5s linear",
-          width: "5px",
-          height: "5px",
-          background: "black"
-        }
-      });
-    }
-  }]);
-
-  return AThing;
-}(React.Component);
-
-
 
 /***/ }),
 
@@ -572,6 +467,333 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./src/js/components/JBItem.jsx":
+/*!**************************************!*\
+  !*** ./src/js/components/JBItem.jsx ***!
+  \**************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return JBItem; });
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+var JBReflection =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(JBReflection, _React$Component);
+
+  function JBReflection(props) {
+    var _this;
+
+    _classCallCheck(this, JBReflection);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(JBReflection).call(this, props));
+    _this.json = {};
+    return _this;
+  }
+
+  _createClass(JBReflection, [{
+    key: "render",
+    value: function render() {
+      this.json = this.props.of.getJson();
+      return React.createElement("div", {
+        className: "jb-reflection"
+      }, JSON.stringify(this.json));
+    }
+  }]);
+
+  return JBReflection;
+}(React.Component);
+
+var JBItem =
+/*#__PURE__*/
+function (_React$Component2) {
+  _inherits(JBItem, _React$Component2);
+
+  function JBItem(_props) {
+    var _this2;
+
+    _classCallCheck(this, JBItem);
+
+    _this2 = _possibleConstructorReturn(this, _getPrototypeOf(JBItem).call(this, _props));
+
+    _defineProperty(_assertThisInitialized(_this2), "getJson", function () {
+      var orderedChildComponents = [];
+
+      _this2.children.forEach(function (child) {
+        var c = _this2.childRefs[child.key];
+
+        if (c) {
+          orderedChildComponents.push({
+            key: c.getKey(),
+            comp: c
+          });
+        }
+      });
+
+      console.log(orderedChildComponents);
+
+      if (orderedChildComponents.length < 1) {
+        if (_this2.isRoot) {
+          return {};
+        }
+
+        if (_this2.r.value.current) {
+          return _this2.r.value.current.value;
+        }
+      }
+
+      var keysAreOrdered = true;
+      var counter = 0;
+      orderedChildComponents.forEach(function (cc) {
+        if (cc.key != counter) {
+          keysAreOrdered = false;
+        }
+
+        counter++;
+      });
+      var ret;
+      console.log('keys...', keysAreOrdered);
+
+      if (keysAreOrdered) {
+        ret = [];
+        orderedChildComponents.forEach(function (cc) {
+          ret.push(cc.comp.getJson());
+        });
+      } else {
+        ret = {};
+        orderedChildComponents.forEach(function (cc) {
+          ret[cc.key] = cc.comp.getJson();
+        });
+      }
+
+      return ret;
+    });
+
+    _defineProperty(_assertThisInitialized(_this2), "addChild", function () {
+      var props = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+      var key = _this2.f.getUid(_assertThisInitialized(_this2));
+
+      _this2.children.push(Object.assign({
+        key: key,
+        _key: key,
+        iValue: "",
+        iKey: _this2.children.length
+      }, props));
+
+      _this2.updateReflection();
+    });
+
+    _defineProperty(_assertThisInitialized(_this2), "deleteSelf", function () {
+      if (_this2.isRoot) {
+        return;
+      }
+
+      delete _this2.parent.children[_this2.props.index];
+
+      if (_this2.parent.childRefs[_this2.props._key]) {
+        delete _this2.parent.childRefs[_this2.props._key];
+      }
+
+      _this2.parent.forceUpdate();
+    });
+
+    _defineProperty(_assertThisInitialized(_this2), "getKey", function () {
+      return _this2.r.key.current && _this2.r.key.current.value;
+    });
+
+    _defineProperty(_assertThisInitialized(_this2), "getValue", function () {
+      return _this2.r.value.current && _this2.r.value.current.value;
+    });
+
+    _defineProperty(_assertThisInitialized(_this2), "updateReflection", function () {
+      if (_this2.f.root.reflection.current) {
+        _this2.f.root.reflection.current.forceUpdate();
+      }
+    });
+
+    _this2.isRoot = _this2.props.isRoot || false;
+    _this2.reflection = React.createRef();
+    _this2.lastUid = 0;
+    _this2.r = {
+      key: React.createRef(),
+      value: React.createRef()
+    };
+    _this2.parent = _this2.isRoot ? _assertThisInitialized(_this2) : _this2.props.p;
+    _this2.type = _this2.props.type || 0;
+
+    if (_this2.isRoot) {
+      _this2.type = _this2.props.type || 1;
+    } // define only in root
+
+
+    _this2.f = _this2.props.f || {
+      root: _assertThisInitialized(_this2),
+      getUid: function getUid(mountedComponent) {
+        mountedComponent.lastUid++;
+        return "_" + mountedComponent.lastUid;
+      }
+    };
+    _this2.children = [];
+    _this2.childRefs = {};
+    _this2.Controls = React.memo(function (props) {
+      var add = function add(e) {
+        _this2.addChild();
+
+        _this2.forceUpdate();
+      };
+
+      var del = function del(e) {
+        _this2.deleteSelf();
+      };
+
+      var primitive = function primitive(e) {
+        _this2.type = 0;
+
+        _this2.forceUpdate();
+      };
+
+      var arr = function arr(e) {
+        _this2.type = 1;
+
+        _this2.forceUpdate();
+      };
+
+      var obj = function obj(e) {
+        _this2.type = 2;
+
+        _this2.forceUpdate();
+      };
+
+      return React.createElement("div", {
+        className: "jb-controls"
+      }, React.createElement("span", {
+        onClick: add
+      }, "add"), " ", React.createElement("span", {
+        onClick: del
+      }, "del"), " ", !_this2.isRoot && React.createElement(React.Fragment, null, React.createElement("span", {
+        onClick: primitive
+      }, "P"), " "), React.createElement("span", {
+        onClick: arr
+      }, "A"), " ", React.createElement("span", {
+        onClick: obj
+      }, "O"));
+    });
+    return _this2;
+  }
+
+  _createClass(JBItem, [{
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      if (this.parent) {
+        if (this.parent.childRefs[this.props._key]) {
+          delete this.parent.childRefs[this.props._key];
+        }
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this3 = this;
+
+      console.log("ItemRender", this);
+      var hide = {
+        display: "none"
+      };
+
+      if (this.isRoot && this.type === 0) {
+        this.type = 2;
+      }
+
+      if (this.children.length === 0) {
+        if (this.type === 1 || this.type === 2) {
+          this.addChild();
+        }
+      } else {
+        if (this.type === 0) {
+          this.type = 2;
+        }
+      }
+
+      return React.createElement(React.Fragment, null, this.isRoot && React.createElement(JBReflection, {
+        of: this,
+        ref: this.reflection
+      }), React.createElement("div", {
+        className: "jb-item",
+        style: {
+          paddingLeft: "20px"
+        }
+      }, React.createElement(this.Controls, {
+        dep1: this.index,
+        dep2: this.type
+      }), this.isRoot && React.createElement("p", null, "Root"), !this.isRoot && React.createElement(React.Fragment, null, this.parent && this.parent.type === 1 && React.createElement("span", null, this.index), React.createElement("input", {
+        type: "text",
+        name: "key",
+        placeholder: "key",
+        ref: this.r.key,
+        onChange: this.updateReflection,
+        style: this.parent && this.parent.type === 1 ? hide : {}
+      }), React.createElement("input", {
+        type: "text",
+        name: "value",
+        placeholder: "value",
+        ref: this.r.value,
+        onChange: this.updateReflection,
+        style: this.type === 1 || this.type === 2 ? hide : {}
+      })), React.createElement("span", null, " ", this.type, " - ", this.children.length), (this.type === 1 || this.type === 2) && this.children.map(function (item, index) {
+        return React.createElement(JBItem, _extends({
+          p: _this3,
+          f: _this3.f,
+          index: index
+        }, item));
+      })));
+    }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      if (this.parent) {
+        this.parent.childRefs[this.props._key] = this;
+      }
+
+      console.log('mount', this.r);
+
+      if (!this.isRoot) {
+        this.r.key.current.value = this.props.iKey;
+        this.r.value.current.value = this.props.iValue;
+      }
+    }
+  }]);
+
+  return JBItem;
+}(React.Component);
+
+
+
+/***/ }),
+
 /***/ "./src/js/components/Main.jsx":
 /*!************************************!*\
   !*** ./src/js/components/Main.jsx ***!
@@ -642,12 +864,11 @@ function (_React$Component) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return TheThing; });
-/* harmony import */ var _AThing__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AThing */ "./src/js/components/AThing.jsx");
-/* harmony import */ var _Generic__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Generic */ "./src/js/components/Generic.jsx");
-/* harmony import */ var _Generic__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_Generic__WEBPACK_IMPORTED_MODULE_1__);
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+/* harmony import */ var _Generic__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Generic */ "./src/js/components/Generic.jsx");
+/* harmony import */ var _Generic__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_Generic__WEBPACK_IMPORTED_MODULE_0__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -665,129 +886,138 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+// import AThing from './AThing';
 
-
-var Reflection =
-/*#__PURE__*/
-function (_React$Component) {
-  _inherits(Reflection, _React$Component);
-
-  function Reflection(props) {
-    var _this;
-
-    _classCallCheck(this, Reflection);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Reflection).call(this, props));
-
-    _this.props.onInit(_assertThisInitialized(_this));
-
-    return _this;
-  }
-
-  _createClass(Reflection, [{
-    key: "render",
-    value: function render() {
-      var thing = this.props.getLinked() || {};
-      return React.createElement("div", {
-        className: "reflection"
-      }, thing.steps, ", ", thing.edges);
-    }
-  }]);
-
-  return Reflection;
-}(React.Component);
 
 var TheThing =
 /*#__PURE__*/
-function (_React$Component2) {
-  _inherits(TheThing, _React$Component2);
+function (_React$Component) {
+  _inherits(TheThing, _React$Component);
 
-  function TheThing(props) {
-    var _this2;
+  function TheThing(_props) {
+    var _this;
 
     _classCallCheck(this, TheThing);
 
-    _this2 = _possibleConstructorReturn(this, _getPrototypeOf(TheThing).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(TheThing).call(this, _props));
 
-    _defineProperty(_assertThisInitialized(_this2), "getKey", function () {
-      _this2.key++;
-      return _this2.key;
-    });
-
-    _this2.key = 0;
-    _this2.things = [];
-
-    for (var x = 0; x < 2; x++) {
-      _this2.things.push({
-        key: _this2.getKey()
-      });
-    }
-
-    _this2.thingRefs = {};
-    _this2.reflectionRefs = {};
-    _Generic__WEBPACK_IMPORTED_MODULE_1___default.a.provideTests(_assertThisInitialized(_this2));
-
-    _this2.addTest('Add', function () {
-      _this2.things.push({
-        key: _this2.getKey()
-      });
-
-      _this2.forceUpdate();
-    });
-
-    _this2.addTest('Minus', function () {
-      _this2.things = _this2.things.filter(function (thing, index) {
+    _defineProperty(_assertThisInitialized(_this), "del", function () {
+      _this.things = _this.things.filter(function (thing, index) {
         return index !== 0;
       }).map(function (thing, index) {
         thing.index = index;
         return thing;
       });
-
-      _this2.forceUpdate();
     });
 
-    return _this2;
+    _defineProperty(_assertThisInitialized(_this), "insert", function () {
+      var props = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+      _this.things.push(Object.assign({}, {
+        key: _this.getKey()
+      }, props));
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "getKey", function () {
+      _this.key++;
+      return _this.key;
+    });
+
+    _this.key = 0;
+    _this.things = [];
+
+    for (var x = 0; x < 2; x++) {
+      _this.things.push({
+        key: _this.getKey()
+      });
+    }
+
+    _this.dir = 1;
+    _this.thingRefs = {};
+    _this.reflectionRefs = {};
+    _this.c = React.createRef();
+    _Generic__WEBPACK_IMPORTED_MODULE_0___default.a.provideTests(_assertThisInitialized(_this));
+
+    _this.addTest('Add', function () {
+      _this.insert();
+
+      _this.forceUpdate();
+    });
+
+    _this.addTest('Minus', function () {
+      _this.del();
+
+      _this.forceUpdate();
+    });
+
+    return _this;
   }
 
   _createClass(TheThing, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      console.log(this.c);
+      console.dir(this.c);
+      var ctx = this.c.getContext("2d");
+      ctx.moveTo(0, 0);
+      ctx.lineTo(200, 100);
+      ctx.stroke();
+    }
+  }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this2 = this;
 
       return React.createElement(React.Fragment, null, this.renderTests(), React.createElement("div", {
         className: "the-thing",
         style: {
-          position: 'absolute',
+          position: 'relative',
           width: '800px',
           height: '800px',
           border: '2px solid blue'
         }
       }, this.things.map(function (thing, index) {
-        return React.createElement(_AThing__WEBPACK_IMPORTED_MODULE_0__["default"], {
+        return React.createElement(AThing, _extends({}, thing, {
           key: thing.key,
+          parent: _this2,
           _key: thing.key,
           index: index,
           onInit: function onInit(comp) {
-            _this3.thingRefs[thing.key] = comp;
+            _this2.thingRefs[thing.key] = comp;
           },
           getLinked: function getLinked() {
-            return _this3.reflectionRefs[thing.key];
+            return _this2.reflectionRefs[thing.key];
           }
-        });
+        }));
       }), this.things.map(function (thing, index) {
         return React.createElement(Reflection, {
           key: thing.key,
+          parent: _this2,
           _key: thing.key,
           index: index,
           onInit: function onInit(comp) {
-            _this3.reflectionRefs[thing.key] = comp;
+            _this2.reflectionRefs[thing.key] = comp;
           },
           getLinked: function getLinked() {
-            return _this3.thingRefs[thing.key];
+            return _this2.thingRefs[thing.key];
           }
         });
-      })));
+      })), React.createElement("canvas", {
+        id: "shit",
+        width: "800",
+        height: "800",
+        ref: function ref(ele) {
+          if (ele) {
+            _this2.c = ele;
+          }
+        },
+        style: {
+          border: "1px solid green",
+          margin: "40px auto"
+        }
+      }));
     }
   }]);
 
@@ -795,6 +1025,148 @@ function (_React$Component2) {
 }(React.Component);
 
 
+
+var AThing =
+/*#__PURE__*/
+function (_React$Component2) {
+  _inherits(AThing, _React$Component2);
+
+  function AThing(props) {
+    var _this3;
+
+    _classCallCheck(this, AThing);
+
+    _this3 = _possibleConstructorReturn(this, _getPrototypeOf(AThing).call(this, props));
+
+    _defineProperty(_assertThisInitialized(_this3), "rand", function (pos) {
+      var next = pos + 10 * (2 * Math.random() - 1);
+
+      if (next < 1 || next > 99) {
+        _this3.edges++;
+        next = Math.abs(100 - next);
+
+        if (_this3.props.parent.things.length > 55) {
+          _this3.props.parent.dir = -1;
+        }
+
+        if (_this3.props.parent.things.length < 3) {
+          _this3.props.parent.dir = 1;
+        }
+
+        if (_this3.props.parent.dir < 0) {
+          if (Math.random() > 0.9) {
+            _this3.props.parent.del();
+
+            _this3.props.parent.forceUpdate();
+          }
+        } else {
+          if (Math.random() > 0.5) {
+            for (var x = 0; x < 10; x++) {
+              _this3.props.parent.insert({
+                startX: _this3.x,
+                startY: _this3.y
+              });
+            }
+
+            _this3.props.parent.forceUpdate();
+          }
+        }
+      }
+
+      return next;
+    });
+
+    _this3.props.onInit(_assertThisInitialized(_this3));
+
+    _this3.interval = undefined;
+    _this3.x = _this3.props.startX !== undefined ? _this3.props.startX : 100 * Math.random();
+    _this3.y = _this3.props.startY !== undefined ? _this3.props.startY : 100 * Math.random();
+    _this3.steps = 0;
+    _this3.edges = 0;
+    return _this3;
+  }
+
+  _createClass(AThing, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this4 = this;
+
+      this.interval = setInterval(function () {
+        _this4.steps++;
+        _this4.x = _this4.rand(_this4.x);
+        _this4.y = _this4.rand(_this4.y);
+
+        _this4.forceUpdate();
+      }, 500);
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      // probably not needed... ?
+      if (this.interval) {
+        clearInterval(this.interval);
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var reflection = this.props.getLinked();
+
+      if (reflection) {
+        reflection.forceUpdate();
+      }
+
+      return React.createElement("div", {
+        className: "a-thing",
+        style: {
+          position: "absolute",
+          bottom: this.x + "%",
+          left: this.y + "%",
+          borderRadius: "10px",
+          transition: "all .5s linear",
+          width: "5px",
+          height: "5px",
+          background: "black"
+        }
+      });
+    }
+  }]);
+
+  return AThing;
+}(React.Component);
+
+var Reflection =
+/*#__PURE__*/
+function (_React$Component3) {
+  _inherits(Reflection, _React$Component3);
+
+  function Reflection(props) {
+    var _this5;
+
+    _classCallCheck(this, Reflection);
+
+    _this5 = _possibleConstructorReturn(this, _getPrototypeOf(Reflection).call(this, props));
+
+    _this5.props.onInit(_assertThisInitialized(_this5));
+
+    return _this5;
+  }
+
+  _createClass(Reflection, [{
+    key: "render",
+    value: function render() {
+      var thing = this.props.getLinked() || {};
+      return React.createElement("div", {
+        className: "reflection",
+        style: {
+          fontSize: "9px"
+        }
+      }, thing.props.index, ": ", thing.steps, ", ", thing.edges);
+    }
+  }]);
+
+  return Reflection;
+}(React.Component);
 
 /***/ })
 
